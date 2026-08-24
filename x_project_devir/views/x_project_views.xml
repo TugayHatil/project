@@ -8,34 +8,15 @@
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page name="devir_form" string="Proje Devir Formu">
-                    <div class="oe_button_box" name="button_box">
-                        <button name="action_create_form" type="object" class="oe_stat_button" icon="fa-plus" attrs="{'invisible': [('active_form_id', '!=', False)]}">
-                            <div class="o_field_widget o_stat_info">
-                                <span class="o_stat_text">Form Oluştur</span>
-                            </div>
-                        </button>
-                        <button name="action_view_forms" type="object" class="oe_stat_button" icon="fa-list" attrs="{'invisible': [('form_ids', '=', [])]}">
-                            <div class="o_field_widget o_stat_info">
-                                <span class="o_stat_value"><field name="form_ids" widget="statinfo" nolabel="1"/></span>
-                                <span class="o_stat_text">Formlar</span>
-                            </div>
-                        </button>
+                    <div class="alert alert-info">
+                        <h4>Proje Devir Formu Özelliği</h4>
+                        <p><field name="devir_form_info" readonly="1"/></p>
+                        <p><strong>Durum:</strong> <field name="devir_form_enabled" readonly="1"/></p>
                     </div>
                     
-                    <group string="Aktif Form Bilgileri" attrs="{'invisible': [('active_form_id', '=', False)]}">
-                        <group>
-                            <field name="form_state" widget="statusbar" readonly="1"/>
-                            <field name="form_version" readonly="1"/>
-                            <field name="form_completion" widget="percentage" readonly="1"/>
-                        </group>
-                        <group>
-                            <field name="active_form_id" readonly="1"/>
-                        </group>
-                    </group>
-                    
-                    <div class="alert alert-info">
-                        <p>Proje Devir Formu özelliği yakında aktif edilecek.</p>
-                        <p>Şu anda temel proje modülü kurulu durumda.</p>
+                    <div class="alert alert-warning">
+                        <p><strong>Not:</strong> Bu özellik şu anda geliştirme aşamasındadır.</p>
+                        <p>Tam sürüm yakında eklenecektir.</p>
                     </div>
                 </page>
             </notebook>
