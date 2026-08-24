@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- x.project.form.answer Tree View -->
+    <record id="x_project_form_answer_tree_view" model="ir.ui.view">
+        <field name="name">x.project.form.answer.tree</field>
+        <field name="model">x.project.form.answer</field>
+        <field name="arch" type="xml">
+            <tree string="Form Cevapları">
+                <field name="form_id"/>
+                <field name="question_id"/>
+                <field name="is_visible"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- x.project.form.answer Form View -->
+    <record id="x_project_form_answer_form_view" model="ir.ui.view">
+        <field name="name">x.project.form.answer.form</field>
+        <field name="model">x.project.form.answer</field>
+        <field name="arch" type="xml">
+            <form string="Form Cevabı">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="form_id"/>
+                            <field name="question_id"/>
+                            <field name="is_visible"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Cevap Değeri">
+                            <group>
+                                <field name="value_text" attrs="{'invisible': [('question_id.answer_type', '!=', 'text')]}"/>
+                                <field name="value_long_text" attrs="{'invisible': [('question_id.answer_type', '!=', 'long_text')]}"/>
+                                <field name="value_date" attrs="{'invisible': [('question_id.answer_type', '!=', 'date')]}"/>
+                                <field name="value_datetime" attrs="{'invisible': [('question_id.answer_type', '!=', 'datetime')]}"/>
+                                <field name="value_integer" attrs="{'invisible': [('question_id.answer_type', '!=', 'integer')]}"/>
+                                <field name="value_float" attrs="{'invisible': [('question_id.answer_type', '!=', 'float')]}"/>
+                                <field name="value_percentage" attrs="{'invisible': [('question_id.answer_type', '!=', 'percentage')]}"/>
+                                <field name="value_boolean" attrs="{'invisible': [('question_id.answer_type', '!=', 'boolean')]}"/>
+                                <field name="value_user_id" attrs="{'invisible': [('question_id.answer_type', '!=', 'many2one_user')]}"/>
+                                <field name="value_user_ids" widget="many2many_tags" attrs="{'invisible': [('question_id.answer_type', '!=', 'many2many_user')]}"/>
+                                <field name="value_partner_id" attrs="{'invisible': [('question_id.answer_type', '!=', 'partner')]}"/>
+                                <field name="value_selection" attrs="{'invisible': [('question_id.answer_type', '!=', 'selection')]}"/>
+                                <field name="value_multi_selection" attrs="{'invisible': [('question_id.answer_type', '!=', 'multi_selection')]}"/>
+                                <field name="attachment_ids" widget="many2many_binary" attrs="{'invisible': [('question_id.answer_type', '!=', 'attachment')]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- x.project.form.answer Action -->
+    <record id="x_project_form_answer_action" model="ir.actions.act_window">
+        <field name="name">Form Cevapları</field>
+        <field name="res_model">x.project.form.answer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

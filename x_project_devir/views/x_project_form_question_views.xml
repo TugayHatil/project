@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- x.project.form.question Tree View -->
+    <record id="x_project_form_question_tree_view" model="ir.ui.view">
+        <field name="name">x.project.form.question.tree</field>
+        <field name="model">x.project.form.question</field>
+        <field name="arch" type="xml">
+            <tree string="Form Soruları">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="section_id"/>
+                <field name="answer_type"/>
+                <field name="required"/>
+                <field name="active"/>
+                <field name="answer_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- x.project.form.question Form View -->
+    <record id="x_project_form_question_form_view" model="ir.ui.view">
+        <field name="name">x.project.form.question.form</field>
+        <field name="model">x.project.form.question</field>
+        <field name="arch" type="xml">
+            <form string="Form Sorusu">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="section_id"/>
+                            <field name="sequence"/>
+                            <field name="name"/>
+                            <field name="answer_type"/>
+                            <field name="required"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="answer_count"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Koşullu Görünürlük" attrs="{'invisible': [('answer_type', 'not in', ['text', 'long_text', 'date', 'datetime', 'integer', 'float', 'percentage', 'boolean', 'many2one_user', 'many2many_user', 'partner', 'selection', 'multi_selection', 'attachment'])]}">
+                            <group>
+                                <group>
+                                    <field name="condition_question_id" domain="[('section_id.template_id', '=', section_id.template_id)]"/>
+                                    <field name="condition_value" placeholder="Koşul değeri"/>
+                                </group>
+                                <group>
+                                    <div class="text-muted">
+                                        <p>Bu soru sadece koşul sorusunun belirtilen değeri aldığında görünecektir.</p>
+                                        <p>Örnek: Koşul sorusu "Saha uygulaması Elva Müh'e mi ait?" ise ve koşul değeri "True" ise, bu soru sadece Evet cevabı verildiğinde görünür.</p>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        
+                        <page string="Seçenekler" attrs="{'invisible': [('answer_type', 'not in', ['selection', 'multi_selection'])]}">
+                            <group>
+                                <field name="selection_options" placeholder="Değer|Etiket formatında her satıra bir seçenek girin&#10;Örnek:&#10;option1|Seçenek 1&#10;option2|Seçenek 2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- x.project.form.question Action -->
+    <record id="x_project_form_question_action" model="ir.actions.act_window">
+        <field name="name">Form Soruları</field>
+        <field name="res_model">x.project.form.question</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

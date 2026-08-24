@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Report Action -->
+        <report 
+            id="action_report_x_project_form"
+            model="x.project.form"
+            string="Proje Devir Formu"
+            report_type="qweb-pdf"
+            name="x_project_devir.report_x_project_form_template"
+            file="x_project_devir.report_x_project_form_template"
+            print_report_name="'Proje Devir Formu - %s' % (object.name)"
+        />
+        
+        <!-- PDF Report Template -->
+        <template id="report_x_project_form_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            
+                            <!-- Header -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <h2 style="text-align: center;">Proje Devir Formu</h2>
+                                    <h3 style="text-align: center;" t-esc="o.name"/>
+                                </div>
+                            </div>
+                            
+                            <hr/>
+                            
+                            <!-- Project Information -->
+                            <div class="row mt-4">
+                                <div class="col-6">
+                                    <strong>Proje:</strong> <span t-esc="o.project_id.name or '-'"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Form Versiyonu:</strong> v<span t-esc="o.template_version"/>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <strong>Formu Dolduran:</strong> <span t-esc="o.filled_by.name"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Doldurma Tarihi:</strong> <span t-esc="o.filled_date"/>
+                                </div>
+                            </div>
+                            
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <strong>Durum:</strong> <span t-esc="o.state"/>
+                                </div>
+                                <div class="col-6">
+                                    <strong>Tamamlanma Yüzdesi:</strong> <span t-esc="o.completion_percentage"/>%
+                                </div>
+                            </div>
+                            
+                            <hr/>
+                            
+                            <!-- Form Sections and Questions -->
+                            <t t-foreach="o.template_id.section_ids" t-as="section">
+                                <div class="row mt-4">
+                                    <div class="col-12">
+                                        <h4 t-esc="section.name"/>
+                                        <p t-if="section.description" class="text-muted" t-esc="section.description"/>
+                                    </div>
+                                </div>
+                                
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 30%;">Soru</th>
+                                            <th style="width: 20%;">Tip</th>
+                                            <th style="width: 50%;">Cevap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="section.question_ids" t-as="question">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="question.name"/>
+                                                    <span t-if="question.required" class="text-danger"> *</span>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="dict(o._fields.get('answer_type').get_description(o.env))[question.answer_type] if question.answer_type else '-'"/>
+                                                </td>
+                                                <td>
+                                                    <t t-set="answer" t-value="o.answer_ids.filtered(lambda a: a.question_id.id == question.id)"/>
+                                                    <t t-if="answer">
+                                                        <span t-esc="answer.get_display_value()"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span class="text-muted">-</span>
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </t>
+                            
+                            <!-- Attachments -->
+                            <div class="row mt-4" t-if="o.attachment_ids">
+                                <div class="col-12">
+                                    <h4>Ekli Dosyalar</h4>
+                                    <ul>
+                                        <li t-foreach="o.attachment_ids" t-as="attachment">
+                                            <span t-esc="attachment.name"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Approval Information -->
+                            <div class="row mt-4" t-if="o.state == 'approved'">
+                                <div class="col-12">
+                                    <div class="alert alert-success">
+                                        <strong>Onaylandı:</strong> <span t-esc="o.approved_by.name"/> - <span t-esc="o.approved_date"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="oe_structure"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

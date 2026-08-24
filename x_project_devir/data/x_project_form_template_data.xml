@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Ana Form Şablonu -->
+        <record id="x_project_form_template_main" model="x.project.form.template">
+            <field name="name">Proje Devir Formu</field>
+            <field name="version">1</field>
+            <field name="active">True</field>
+            <field name="description">Standart proje devir/başlangıç formu şablonu</field>
+        </record>
+        
+        <!-- Bölüm 1: Proje Bilgileri -->
+        <record id="x_project_form_section_project_info" model="x.project.form.section">
+            <field name="name">Proje Bilgileri</field>
+            <field name="sequence">10</field>
+            <field name="template_id" ref="x_project_form_template_main"/>
+            <field name="description">Projenin temel bilgileri</field>
+        </record>
+        
+        <!-- Proje Bilgileri Soruları -->
+        <record id="x_project_form_question_sales_company" model="x.project.form.question">
+            <field name="name">Satış yapılan firma</field>
+            <field name="sequence">1</field>
+            <field name="section_id" ref="x_project_form_section_project_info"/>
+            <field name="answer_type">partner</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_job_name" model="x.project.form.question">
+            <field name="name">İşin adı ve yeri</field>
+            <field name="sequence">2</field>
+            <field name="section_id" ref="x_project_form_section_project_info"/>
+            <field name="answer_type">text</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_sales_date" model="x.project.form.question">
+            <field name="name">Satış tarihi</field>
+            <field name="sequence">3</field>
+            <field name="section_id" ref="x_project_form_section_project_info"/>
+            <field name="answer_type">date</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_delivery_date" model="x.project.form.question">
+            <field name="name">Teslim tarihi</field>
+            <field name="sequence">4</field>
+            <field name="section_id" ref="x_project_form_section_project_info"/>
+            <field name="answer_type">date</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_technical_contact" model="x.project.form.question">
+            <field name="name">Teknik irtibat</field>
+            <field name="sequence">5</field>
+            <field name="section_id" ref="x_project_form_section_project_info"/>
+            <field name="answer_type">text</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+        </record>
+        
+        <!-- Bölüm 2: Satış Devir -->
+        <record id="x_project_form_section_sales_handover" model="x.project.form.section">
+            <field name="name">Satış Devir</field>
+            <field name="sequence">20</field>
+            <field name="template_id" ref="x_project_form_template_main"/>
+            <field name="description">Satış devir toplantısı bilgileri</field>
+        </record>
+        
+        <!-- Satış Devir Soruları -->
+        <record id="x_project_form_question_meeting_date" model="x.project.form.question">
+            <field name="name">Devir toplantısı tarihi</field>
+            <field name="sequence">1</field>
+            <field name="section_id" ref="x_project_form_section_sales_handover"/>
+            <field name="answer_type">date</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_participants" model="x.project.form.question">
+            <field name="name">Katılımcılar</field>
+            <field name="sequence">2</field>
+            <field name="section_id" ref="x_project_form_section_sales_handover"/>
+            <field name="answer_type">many2many_user</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <!-- Bölüm 3: Doküman Kontrolü -->
+        <record id="x_project_form_section_document_control" model="x.project.form.section">
+            <field name="name">Doküman Kontrolü</field>
+            <field name="sequence">30</field>
+            <field name="template_id" ref="x_project_form_template_main"/>
+            <field name="description">Gerekli dokümanların kontrolü</field>
+        </record>
+        
+        <!-- Doküman Kontrolü Soruları -->
+        <record id="x_project_form_question_engineering_folder" model="x.project.form.question">
+            <field name="name">Mühendislik klasörü açıldı mı?</field>
+            <field name="sequence">1</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_contract" model="x.project.form.question">
+            <field name="name">Sözleşme eklendi mi?</field>
+            <field name="sequence">2</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_contract_attachment" model="x.project.form.question">
+            <field name="name">Sözleşme dosyası</field>
+            <field name="sequence">3</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">attachment</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_contract"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <record id="x_project_form_question_specification" model="x.project.form.question">
+            <field name="name">Şartname eklendi mi?</field>
+            <field name="sequence">4</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_specification_attachment" model="x.project.form.question">
+            <field name="name">Şartname dosyası</field>
+            <field name="sequence">5</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">attachment</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_specification"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <record id="x_project_form_question_material_list" model="x.project.form.question">
+            <field name="name">Malzeme listesi eklendi mi?</field>
+            <field name="sequence">6</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_customer_projects" model="x.project.form.question">
+            <field name="name">Müşteri projeleri eklendi mi?</field>
+            <field name="sequence">7</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_revisions" model="x.project.form.question">
+            <field name="name">Revizyonlar eklendi mi?</field>
+            <field name="sequence">8</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_delivery_dates" model="x.project.form.question">
+            <field name="name">Teslim süreleri aktarıldı mı?</field>
+            <field name="sequence">9</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_orders" model="x.project.form.question">
+            <field name="name">Siparişler geçildi mi?</field>
+            <field name="sequence">10</field>
+            <field name="section_id" ref="x_project_form_section_document_control"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <!-- Bölüm 4: Saha -->
+        <record id="x_project_form_section_field" model="x.project.form.section">
+            <field name="name">Saha</field>
+            <field name="sequence">40</field>
+            <field name="template_id" ref="x_project_form_template_main"/>
+            <field name="description">Saha uygulama bilgileri</field>
+        </record>
+        
+        <!-- Saha Soruları -->
+        <record id="x_project_form_question_survey_needed" model="x.project.form.question">
+            <field name="name">Keşif gerekiyor mu?</field>
+            <field name="sequence">1</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_elva_field" model="x.project.form.question">
+            <field name="name">Saha uygulaması Elva Müh'e mi ait?</field>
+            <field name="sequence">2</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_subcontractor_quotes" model="x.project.form.question">
+            <field name="name">Taşeron teklifleri eklendi mi?</field>
+            <field name="sequence">3</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_elva_field"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <record id="x_project_form_question_subcontractor_quotes_attachment" model="x.project.form.question">
+            <field name="name">Taşeron teklif dosyaları</field>
+            <field name="sequence">4</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">attachment</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_subcontractor_quotes"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <record id="x_project_form_question_supervision" model="x.project.form.question">
+            <field name="name">Süpervizyon var mı?</field>
+            <field name="sequence">5</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_supervision_days" model="x.project.form.question">
+            <field name="name">Kaç gün?</field>
+            <field name="sequence">6</field>
+            <field name="section_id" ref="x_project_form_section_field"/>
+            <field name="answer_type">integer</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_supervision"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <!-- Bölüm 5: Finans -->
+        <record id="x_project_form_section_finance" model="x.project.form.section">
+            <field name="name">Finans</field>
+            <field name="sequence">50</field>
+            <field name="template_id" ref="x_project_form_template_main"/>
+            <field name="description">Finansal bilgiler</field>
+        </record>
+        
+        <!-- Finans Soruları -->
+        <record id="x_project_form_question_payment_received" model="x.project.form.question">
+            <field name="name">Ödeme alındı mı?</field>
+            <field name="sequence">1</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_payment_expected" model="x.project.form.question">
+            <field name="name">Ödeme bekleniyor mu?</field>
+            <field name="sequence">2</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_invoice_time" model="x.project.form.question">
+            <field name="name">Fatura zamanı</field>
+            <field name="sequence">3</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">text</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_withholding" model="x.project.form.question">
+            <field name="name">Tevkifat var mı?</field>
+            <field name="sequence">4</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">boolean</field>
+            <field name="required">True</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="x_project_form_question_withholding_rate" model="x.project.form.question">
+            <field name="name">Tevkifat oranı</field>
+            <field name="sequence">5</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">percentage</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+            <field name="condition_question_id" ref="x_project_form_question_withholding"/>
+            <field name="condition_value">True</field>
+        </record>
+        
+        <record id="x_project_form_question_incentive" model="x.project.form.question">
+            <field name="name">Teşvik</field>
+            <field name="sequence">6</field>
+            <field name="section_id" ref="x_project_form_section_finance"/>
+            <field name="answer_type">text</field>
+            <field name="required">False</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>

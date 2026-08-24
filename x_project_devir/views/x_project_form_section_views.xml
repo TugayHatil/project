@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- x.project.form.section Tree View -->
+    <record id="x_project_form_section_tree_view" model="ir.ui.view">
+        <field name="name">x.project.form.section.tree</field>
+        <field name="model">x.project.form.section</field>
+        <field name="arch" type="xml">
+            <tree string="Form Bölümleri">
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="template_id"/>
+                <field name="question_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- x.project.form.section Form View -->
+    <record id="x_project_form_section_form_view" model="ir.ui.view">
+        <field name="name">x.project.form.section.form</field>
+        <field name="model">x.project.form.section</field>
+        <field name="arch" type="xml">
+            <form string="Form Bölümü">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="template_id"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="name"/>
+                            <field name="question_count"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                    <notebook>
+                        <page string="Sorular">
+                            <field name="question_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="answer_type"/>
+                                    <field name="required"/>
+                                    <field name="active"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- x.project.form.section Action -->
+    <record id="x_project_form_section_action" model="ir.actions.act_window">
+        <field name="name">Form Bölümleri</field>
+        <field name="res_model">x.project.form.section</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

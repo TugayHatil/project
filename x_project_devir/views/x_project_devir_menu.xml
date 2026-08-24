@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_x_project_devir_root" 
+              name="Proje Devir Formu" 
+              sequence="50"
+              web_icon="x_project_devir,static/description/icon.png"/>
+</odoo>

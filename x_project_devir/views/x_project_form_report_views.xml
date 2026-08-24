@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tamamlanmamış Formlar Raporu -->
+    <record id="x_project_form_report_incomplete" model="ir.actions.act_window">
+        <field name="name">Tamamlanmamış Formlar</field>
+        <field name="res_model">x.project.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state', 'in', ['draft', 'in_progress'])]</field>
+        <field name="context">{'default_state': 'in_progress'}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tamamlanmamış form yok.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Ödemesi Alınmamış Projeler Raporu -->
+    <record id="x_project_form_report_unpaid" model="ir.actions.act_window">
+        <field name="name">Ödemesi Alınmamış Projeler</field>
+        <field name="res_model">x.project.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('answer_ids.question_id.name', '=', 'Ödeme alındı mı?'), ('answer_ids.value_boolean', '=', False)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Ödemesi alınmamış proje yok.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Keşif Gereken Projeler Raporu -->
+    <record id="x_project_form_report_survey" model="ir.actions.act_window">
+        <field name="name">Keşif Gereken Projeler</field>
+        <field name="res_model">x.project.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('answer_ids.question_id.name', '=', 'Keşif gerekiyor mu?'), ('answer_ids.value_boolean', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Keşif gerektiren proje yok.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Tevkifatlı Projeler Raporu -->
+    <record id="x_project_form_report_withholding" model="ir.actions.act_window">
+        <field name="name">Tevkifatlı Projeler</field>
+        <field name="res_model">x.project.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('answer_ids.question_id.name', '=', 'Tevkifat var mı?'), ('answer_ids.value_boolean', '=', True)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tevkifatlı proje yok.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Eksik Dokümanlı Projeler Raporu -->
+    <record id="x_project_form_report_missing_docs" model="ir.actions.act_window">
+        <field name="name">Eksik Dokümanlı Projeler</field>
+        <field name="res_model">x.project.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('answer_ids.question_id.name', 'in', ['Sözleşme eklendi mi?', 'Şartname eklendi mi?', 'Malzeme listesi eklendi mi?']), ('answer_ids.value_boolean', '=', False)]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Eksik dokümanlı proje yok.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Raporlama Menüsü -->
+    <menuitem id="menu_x_project_devir_reports" 
+              name="Raporlar" 
+              parent="x_project_devir.menu_x_project_devir_root"
+              sequence="30"/>
+    
+    <menuitem id="menu_x_project_form_report_incomplete" 
+              name="Tamamlanmamış Formlar" 
+              parent="menu_x_project_devir_reports"
+              action="x_project_form_report_incomplete"
+              sequence="10"/>
+              
+    <menuitem id="menu_x_project_form_report_unpaid" 
+              name="Ödemesi Alınmamış Projeler" 
+              parent="menu_x_project_devir_reports"
+              action="x_project_form_report_unpaid"
+              sequence="20"/>
+              
+    <menuitem id="menu_x_project_form_report_survey" 
+              name="Keşif Gereken Projeler" 
+              parent="menu_x_project_devir_reports"
+              action="x_project_form_report_survey"
+              sequence="30"/>
+              
+    <menuitem id="menu_x_project_form_report_withholding" 
+              name="Tevkifatlı Projeler" 
+              parent="menu_x_project_devir_reports"
+              action="x_project_form_report_withholding"
+              sequence="40"/>
+              
+    <menuitem id="menu_x_project_form_report_missing_docs" 
+              name="Eksik Dokümanlı Projeler" 
+              parent="menu_x_project_devir_reports"
+              action="x_project_form_report_missing_docs"
+              sequence="50"/>
+</odoo>
