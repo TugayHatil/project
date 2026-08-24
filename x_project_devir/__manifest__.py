@@ -31,14 +31,6 @@
         'security/ir.model.access.csv',
         'views/x_project_devir_menu.xml',
         'views/x_project_base_views.xml',
-        'views/x_project_form_template_views.xml',
-        'views/x_project_form_section_views.xml',
-        'views/x_project_form_question_views.xml',
-        'views/x_project_form_views.xml',
-        'views/x_project_form_answer_views.xml',
-        'views/x_project_views.xml',
-        'views/x_project_form_report_views.xml',
-        'report/x_project_form_report_templates.xml',
     ],
     'assets': {
         'web.assets_backend': [
