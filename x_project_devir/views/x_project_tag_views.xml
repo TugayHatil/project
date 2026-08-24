@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- x.project.tag Tree View -->
+    <record id="x_project_tag_tree_view" model="ir.ui.view">
+        <field name="name">x.project.tag.tree</field>
+        <field name="model">x.project.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Proje Etiketleri">
+                <field name="name"/>
+                <field name="color"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- x.project.tag Form View -->
+    <record id="x_project_tag_form_view" model="ir.ui.view">
+        <field name="name">x.project.tag.form</field>
+        <field name="model">x.project.tag</field>
+        <field name="arch" type="xml">
+            <form string="Proje Etiketi">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="color"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- x.project.tag Action -->
+    <record id="x_project_tag_action" model="ir.actions.act_window">
+        <field name="name">Proje Etiketleri</field>
+        <field name="res_model">x.project.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- x.project.type Tree View -->
+    <record id="x_project_type_tree_view" model="ir.ui.view">
+        <field name="name">x.project.type.tree</field>
+        <field name="model">x.project.type</field>
+        <field name="arch" type="xml">
+            <tree string="Proje Tipleri">
+                <field name="name"/>
+                <field name="x_colour"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- x.project.type Form View -->
+    <record id="x_project_type_form_view" model="ir.ui.view">
+        <field name="name">x.project.type.form</field>
+        <field name="model">x.project.type</field>
+        <field name="arch" type="xml">
+            <form string="Proje Tipi">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="x_colour"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- x.project.type Action -->
+    <record id="x_project_type_action" model="ir.actions.act_window">
+        <field name="name">Proje Tipleri</field>
+        <field name="res_model">x.project.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Menu Items -->
+    <menuitem id="menu_x_project_config" 
+              name="Yapılandırma" 
+              parent="x_project_devir.menu_x_project_devir_root"
+              sequence="40"/>
+              
+    <menuitem id="menu_x_project_tag" 
+              name="Proje Etiketleri" 
+              parent="menu_x_project_config"
+              action="x_project_tag_action"
+              sequence="10"/>
+              
+    <menuitem id="menu_x_project_type" 
+              name="Proje Tipleri" 
+              parent="menu_x_project_config"
+              action="x_project_type_action"
+              sequence="20"/>
+</odoo>

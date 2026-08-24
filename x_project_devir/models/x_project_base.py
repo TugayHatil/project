@@ -40,7 +40,7 @@ class XProject(models.Model):
     
     # Diğer bilgiler
     x_web_link = fields.Char('Web Link')
-    x_tag_id = fields.Many2many('project.tags', 'x_project_tag_rel', 'project_id', 'tag_id', string='Etiketler')
+    x_tag_id = fields.Many2many('x.project.tag', 'x_project_tag_rel', 'project_id', 'tag_id', string='Etiketler')
     x_proje_type = fields.Many2many('x.project.type', 'x_project_type_rel', 'project_id', 'type_id', 
                                     string='Proje Tipi')
     x_subcontractor = fields.Many2one('res.partner', string='Taşeron')
@@ -85,4 +85,13 @@ class XProjectType(models.Model):
     
     name = fields.Char('Proje Tipi', required=True)
     x_colour = fields.Integer('Renk', default=0)
+    description = fields.Text('Açıklama')
+
+
+class XProjectTag(models.Model):
+    _name = 'x.project.tag'
+    _description = 'Proje Etiketi'
+    
+    name = fields.Char('Etiket', required=True)
+    color = fields.Integer('Renk', default=0)
     description = fields.Text('Açıklama')
