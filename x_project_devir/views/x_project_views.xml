@@ -32,6 +32,11 @@
                             <field name="active_form_id" readonly="1"/>
                         </group>
                     </group>
+                    
+                    <div class="alert alert-info">
+                        <p>Proje Devir Formu özelliği yakında aktif edilecek.</p>
+                        <p>Şu anda temel proje modülü kurulu durumda.</p>
+                    </div>
                 </page>
             </notebook>
         </field>
