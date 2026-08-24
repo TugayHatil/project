@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="field_x_project_x_deneme" model="ir.model.fields">
+            <field name="name">x_deneme</field>
+            <field name="field_description">Deneme</field>
+            <field name="model_id" search="[('model', '=', 'x_project')]"/>
+            <field name="ttype">char</field>
+            <field name="state">manual</field>
+        </record>
+    </data>
+</odoo>
