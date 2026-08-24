@@ -4,7 +4,7 @@
     <record id="x_project_form_view_devir" model="ir.ui.view">
         <field name="name">x.project.form.view.devir</field>
         <field name="model">x.project</field>
-        <field name="inherit_id" ref="x_project.x_project_view_form"/>
+        <field name="inherit_id" ref="x_project_view_form"/>
         <field name="arch" type="xml">
             <notebook position="inside">
                 <page name="devir_form" string="Proje Devir Formu">
@@ -32,11 +32,6 @@
                             <field name="active_form_id" readonly="1"/>
                         </group>
                     </group>
-                    
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
                 </page>
             </notebook>
         </field>
