@@ -86,17 +86,17 @@
                                     <field name="value_percentage" attrs="{'invisible': [('question_id.answer_type', '!=', 'percentage')], 'readonly': [('is_visible', '=', False)]}"/>
                                     <field name="value_boolean" attrs="{'invisible': [('question_id.answer_type', '!=', 'boolean')], 'readonly': [('is_visible', '=', False)]}"/>
                                     <field name="value_user_id" attrs="{'invisible': [('question_id.answer_type', '!=', 'many2one_user')], 'readonly': [('is_visible', '=', False)]}"/>
-                                    <field name="value_user_ids" widget="many2many_tags" attrs="{'invisible': [('question_id.answer_type', '!=', 'many2many_user')], 'readonly': [('is_visible', '=', False)]}"/>
+                                    <field name="value_user_ids" attrs="{'invisible': [('question_id.answer_type', '!=', 'many2many_user')], 'readonly': [('is_visible', '=', False)]}"/>
                                     <field name="value_partner_id" attrs="{'invisible': [('question_id.answer_type', '!=', 'partner')], 'readonly': [('is_visible', '=', False)]}"/>
                                     <field name="value_selection" attrs="{'invisible': [('question_id.answer_type', '!=', 'selection')], 'readonly': [('is_visible', '=', False)]}"/>
                                     <field name="value_multi_selection" attrs="{'invisible': [('question_id.answer_type', '!=', 'multi_selection')], 'readonly': [('is_visible', '=', False)]}"/>
-                                    <field name="attachment_ids" widget="many2many_binary" attrs="{'invisible': [('question_id.answer_type', '!=', 'attachment')], 'readonly': [('is_visible', '=', False)]}"/>
+                                    <field name="attachment_ids" attrs="{'invisible': [('question_id.answer_type', '!=', 'attachment')], 'readonly': [('is_visible', '=', False)]}"/>
                                 </tree>
                             </field>
                         </page>
                         
                         <page string="Dosyalar">
-                            <field name="attachment_ids" widget="many2many_binary"/>
+                            <field name="attachment_ids"/>
                         </page>
                     </notebook>
                 </sheet>

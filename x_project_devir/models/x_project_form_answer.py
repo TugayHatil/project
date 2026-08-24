@@ -20,14 +20,14 @@ class XProjectFormAnswer(models.Model):
     value_float = fields.Float('Ondalıklı Sayı Değeri')
     value_percentage = fields.Float('Yüzde Değeri')
     value_boolean = fields.Boolean('Boolean Değeri')
-    value_user_id = fields.Many2one('res.users', string='Kullanıcı Değeri')
-    value_user_ids = fields.Many2many('res.users', string='Kullanıcılar Değeri')
-    value_partner_id = fields.Many2one('res.partner', string='Partner Değeri')
+    value_user_id = fields.Integer('Kullanıcı Değeri (ID)')
+    value_user_ids = fields.Char('Kullanıcılar Değeri (IDs)')
+    value_partner_id = fields.Integer('Partner Değeri (ID)')
     value_selection = fields.Char('Seçim Değeri')
     value_multi_selection = fields.Char('Çoklu Seçim Değeri')
     
     # Dosya eki
-    attachment_ids = fields.Many2many('ir.attachment', string='Dosya Ekleri')
+    attachment_ids = fields.Char('Dosya Ekleri (IDs)')
     
     # Görünürlük kontrolü
     is_visible = fields.Boolean('Görünür', compute='_compute_is_visible', store=True)
@@ -67,17 +67,17 @@ class XProjectFormAnswer(models.Model):
         elif question.answer_type == 'boolean':
             return self.value_boolean
         elif question.answer_type == 'many2one_user':
-            return self.value_user_id.id if self.value_user_id else None
+            return self.value_user_id
         elif question.answer_type == 'many2many_user':
-            return self.value_user_ids.ids if self.value_user_ids else []
+            return self.value_user_ids
         elif question.answer_type == 'partner':
-            return self.value_partner_id.id if self.value_partner_id else None
+            return self.value_partner_id
         elif question.answer_type == 'selection':
             return self.value_selection
         elif question.answer_type == 'multi_selection':
             return self.value_multi_selection
         elif question.answer_type == 'attachment':
-            return self.attachment_ids.ids if self.attachment_ids else []
+            return self.attachment_ids
         
         return None
     

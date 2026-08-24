@@ -31,13 +31,13 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="x_partner"/>
-                            <field name="x_kontak"/>
+                            <field name="x_partner_name"/>
+                            <field name="x_kontak_name"/>
                         </group>
                         <group>
-                            <field name="x_sales_support" widget="many2many_avatar_user" optional="show" domain="[('share', '=', False), ('active', '=', True)]"/>
-                            <field name="x_sales_employe" widget="many2many_avatar_user" optional="show" domain="[('share', '=', False), ('active', '=', True)]"/>
-                            <field name="x_project_engineer" widget="many2many_avatar_user" optional="show" domain="[('share', '=', False), ('active', '=', True)]"/>
+                            <field name="x_sales_support_names"/>
+                            <field name="x_sales_employe_names"/>
+                            <field name="x_project_engineer_names"/>
                         </group>
                         <group>
                             <field name="x_date1"/>
@@ -47,15 +47,14 @@
                             <field name="x_web_link" widget="url"/>
                         </group>
                         <group>
-                            <field name="x_tag_id"/>
-                            <field name="x_proje_type" widget="many2many_tags" options="{'color_field':'x_colour'}"/>
+                            <field name="x_tag_names"/>
+                            <field name="x_proje_type_name"/>
                         </group>
                         <group>
-                            <field name="x_subcontractor"/>
+                            <field name="x_subcontractor_name"/>
                         </group>
                         <group>
-                            <field name="x_tedarikci" widget="many2many_tags"/>
-                            <field name="x_attachment" nolabel="1" widget="many2many_binary"/>
+                            <field name="x_tedarikci_names"/>
                         </group>
                     </group>
                     <notebook>

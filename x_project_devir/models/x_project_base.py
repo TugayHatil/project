@@ -19,17 +19,14 @@ class XProject(models.Model):
         ('cancelled', 'İptal'),
     ], string='Durum', default='draft', required=True, tracking=True)
     
-    # Temel bilgiler
-    x_partner = fields.Many2one('res.partner', string='Müşteri', tracking=True)
-    x_kontak = fields.Many2one('res.partner', string='Kontak', tracking=True)
+    # Temel bilgiler - sadece string alanlar
+    x_partner_name = fields.Char('Müşteri Adı', tracking=True)
+    x_kontak_name = fields.Char('Kontak Adı', tracking=True)
     
-    # Kullanıcılar
-    x_sales_support = fields.Many2many('res.users', 'x_project_sales_support_rel', 'project_id', 'user_id', 
-                                      string='Satış Destek', domain="[('share', '=', False), ('active', '=', True)]")
-    x_sales_employe = fields.Many2many('res.users', 'x_project_sales_employe_rel', 'project_id', 'user_id',
-                                      string='Satışçı', domain="[('share', '=', False), ('active', '=', True)]")
-    x_project_engineer = fields.Many2many('res.users', 'x_project_engineer_rel', 'project_id', 'user_id',
-                                          string='Proje Mühendisi', domain="[('share', '=', False), ('active', '=', True)]")
+    # Kullanıcılar - sadece string alanlar
+    x_sales_support_names = fields.Char('Satış Destek')
+    x_sales_employe_names = fields.Char('Satışçı')
+    x_project_engineer_names = fields.Char('Proje Mühendisi')
     
     # Tarihler
     x_date1 = fields.Date('Satış Tarihi')
@@ -39,16 +36,10 @@ class XProject(models.Model):
     
     # Diğer bilgiler
     x_web_link = fields.Char('Web Link')
-    x_tag_id = fields.Many2many('x.project.tag', 'x_project_tag_rel', 'project_id', 'tag_id', string='Etiketler')
-    x_proje_type = fields.Many2many('x.project.type', 'x_project_type_rel', 'project_id', 'type_id', 
-                                    string='Proje Tipi')
-    x_subcontractor = fields.Many2one('res.partner', string='Taşeron')
-    x_tedarikci = fields.Many2many('res.partner', 'x_project_tedarikci_rel', 'project_id', 'partner_id',
-                                   string='Tedarikçiler')
-    
-    # Dosyalar
-    x_attachment = fields.Many2many('ir.attachment', 'x_project_attachment_rel', 'project_id', 'attachment_id',
-                                    string='Dosyalar')
+    x_tag_names = fields.Char('Etiketler')
+    x_proje_type_name = fields.Char('Proje Tipi')
+    x_subcontractor_name = fields.Char('Taşeron')
+    x_tedarikci_names = fields.Char('Tedarikçiler')
     
     # Açıklama
     x_description = fields.Html('Açıklama')
@@ -76,21 +67,3 @@ class XProject(models.Model):
     def action_draft(self):
         """Projeyi taslağa al"""
         self.write({'x_state': 'draft'})
-
-
-class XProjectType(models.Model):
-    _name = 'x.project.type'
-    _description = 'Proje Tipi'
-    
-    name = fields.Char('Proje Tipi', required=True)
-    x_colour = fields.Integer('Renk', default=0)
-    description = fields.Text('Açıklama')
-
-
-class XProjectTag(models.Model):
-    _name = 'x.project.tag'
-    _description = 'Proje Etiketi'
-    
-    name = fields.Char('Etiket', required=True)
-    color = fields.Integer('Renk', default=0)
-    description = fields.Text('Açıklama')

@@ -40,7 +40,7 @@ class XProjectForm(models.Model):
     answer_ids = fields.One2many('x.project.form.answer', 'form_id', string='Cevaplar')
     
     # Dosyalar
-    attachment_ids = fields.Many2many('ir.attachment', string='Ekli Dosyalar')
+    attachment_ids = fields.Char('Ekli Dosyalar (IDs)')
     
     @api.depends('project_id', 'template_id')
     def _compute_name(self):

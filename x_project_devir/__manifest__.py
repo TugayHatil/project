@@ -31,7 +31,6 @@
         'security/ir.model.access.csv',
         'views/x_project_devir_menu.xml',
         'views/x_project_base_views.xml',
-        'views/x_project_tag_views.xml',
         'views/x_project_form_template_views.xml',
         'views/x_project_form_section_views.xml',
         'views/x_project_form_question_views.xml',
