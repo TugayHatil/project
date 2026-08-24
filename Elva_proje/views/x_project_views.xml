@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_x_project_form_inherit_elva" model="ir.ui.view">
+            <field name="name">x_project.form.inherit.elva</field>
+            <field name="model">x_project</field>
+            <!-- Arayüzden oluşturulmuş ana form görünümünü otomatik bul (Dış kimlik yerine search kullanıyoruz) -->
+            <field name="inherit_id" search="[('model', '=', 'x_project'), ('type', '=', 'form')]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='x_kontak']" position="after">
+                    <field name="x_deneme"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

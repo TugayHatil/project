@@ -13,6 +13,7 @@
     'depends': ['base'],
     'data': [
         'data/ir_model_fields.xml',
+        'views/x_project_views.xml',
     ],
     'installable': True,
     'application': False,
