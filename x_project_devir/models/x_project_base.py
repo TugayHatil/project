@@ -20,7 +20,6 @@ class XProject(models.Model):
     ], string='Durum', default='draft', required=True, tracking=True)
     
     # Temel bilgiler
-    x_analytic = fields.Many2one('account.analytic.account', string='Analitik Hesap', required=True, tracking=True)
     x_partner = fields.Many2one('res.partner', string='Müşteri', tracking=True)
     x_kontak = fields.Many2one('res.partner', string='Kontak', tracking=True)
     

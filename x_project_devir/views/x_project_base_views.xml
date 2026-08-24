@@ -31,7 +31,6 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="x_analytic" required="1"/>
                             <field name="x_partner"/>
                             <field name="x_kontak"/>
                         </group>
