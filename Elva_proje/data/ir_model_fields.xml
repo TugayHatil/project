@@ -8,5 +8,13 @@
             <field name="ttype">char</field>
             <field name="state">manual</field>
         </record>
+
+        <record id="field_x_project_x_teslim_formu" model="ir.model.fields">
+            <field name="name">x_teslim_formu</field>
+            <field name="field_description">Teslim Formu</field>
+            <field name="model_id" search="[('model', '=', 'x_project')]"/>
+            <field name="ttype">html</field>
+            <field name="state">manual</field>
+        </record>
     </data>
 </odoo>

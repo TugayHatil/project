@@ -10,6 +10,11 @@
                 <xpath expr="//field[@name='x_kontak']" position="after">
                     <field name="x_deneme"/>
                 </xpath>
+                <xpath expr="//page[@name='description_page']" position="after">
+                    <page string="Teslim Formu" name="teslim_formu_page">
+                        <field name="x_teslim_formu" widget="html"/>
+                    </page>
+                </xpath>
             </field>
         </record>
     </data>
