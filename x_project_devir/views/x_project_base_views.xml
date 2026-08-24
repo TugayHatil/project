@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <tree string="Projeler">
                 <field name="name"/>
-                <field name="x_partner"/>
+                <field name="x_partner_name"/>
                 <field name="x_state"/>
                 <field name="x_date1"/>
                 <field name="x_date2"/>
