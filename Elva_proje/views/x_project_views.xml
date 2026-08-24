@@ -7,6 +7,10 @@
             <!-- Arayüzden oluşturulmuş ana form görünümünü otomatik bul (Dış kimlik yerine search kullanıyoruz) -->
             <field name="inherit_id" search="[('model', '=', 'x_project'), ('type', '=', 'form')]"/>
             <field name="arch" type="xml">
+                <!-- Hata veren alanları temizle -->
+                <xpath expr="//field[@name='x_analytic']" position="replace"/>
+                <xpath expr="//field[@name='x_partner']" position="replace"/>
+                
                 <xpath expr="//field[@name='x_kontak']" position="after">
                     <field name="x_deneme"/>
                 </xpath>
